@@ -16,7 +16,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -43,7 +42,6 @@ const formSchema = z.object({
     .number()
     .min(1, { message: 'Średnica musi być liczbą dodatnią.' }),
   description: z.string().min(10, { message: 'Opis musi mieć co najmniej 10 znaków.' }),
-  isMonument: z.boolean().default(false).optional(),
   photo: z.any().optional(),
   location: z.object({
     lat: z.number(),
@@ -70,7 +68,6 @@ export function TreeSubmissionForm() {
       species: '',
       diameter: 0,
       description: '',
-      isMonument: false,
       location: mapCenter,
     },
   });
@@ -158,7 +155,7 @@ export function TreeSubmissionForm() {
       photoUrl: defaultTreeImage,
       submittedBy: user.uid,
       status: 'Oczekujące',
-      isMonument: values.isMonument || false
+      isMonument: true
     });
     
     addPoints(10); // Award 10 points
@@ -291,30 +288,6 @@ export function TreeSubmissionForm() {
                 )}
             />
             
-            <FormField
-              control={form.control}
-              name="isMonument"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel>
-                      Drzewo prawdopodobnie spełnia kryteria pomnika przyrody
-                    </FormLabel>
-                    <FormDescription>
-                      Zaznacz, jeśli uważasz, że drzewo jest wystarczająco okazałe.
-                    </FormDescription>
-                  </div>
-                </FormItem>
-              )}
-            />
-
-
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? <Loader2 className="animate-spin" /> : 'Zgłoś drzewo'}
             </Button>

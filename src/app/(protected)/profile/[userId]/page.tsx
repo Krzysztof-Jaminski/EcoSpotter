@@ -16,6 +16,7 @@ import { usePathname } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/auth-provider';
 
 export default function ProfilePage() {
   const pathname = usePathname();
@@ -24,6 +25,7 @@ export default function ProfilePage() {
   const [submittedTrees, setSubmittedTrees] = useState<Tree[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const { user: currentUser } = useAuth();
 
   useEffect(() => {
     async function loadUserData() {
@@ -157,9 +159,12 @@ export default function ProfilePage() {
                     <Button variant="outline" size="sm" className="flex-1" onClick={() => handleCommentClick(tree.id)}>
                       <MessageSquare className="mr-2 h-4 w-4"/> Komentarze
                     </Button>
-                    <Button variant="outline" size="icon" className="text-destructive hover:bg-destructive/10 hover:text-destructive" onClick={() => handleReportClick(tree.id)}>
-                      <ShieldAlert className="h-4 w-4"/>
-                    </Button>
+                    {/* Pokaż przycisk zgłaszania tylko jeśli użytkownik ogląda profil innej osoby */}
+                    {currentUser && currentUser.uid !== userId && (
+                      <Button variant="outline" size="icon" className="text-destructive hover:bg-destructive/10 hover:text-destructive" onClick={() => handleReportClick(tree.id)}>
+                        <ShieldAlert className="h-4 w-4"/>
+                      </Button>
+                    )}
                 </CardContent>
               </Card>
             ))}
