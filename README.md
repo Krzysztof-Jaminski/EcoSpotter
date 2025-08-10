@@ -1,100 +1,178 @@
-# EcoSpotter - Firebase Studio App
+# 🌳 EcoSpotter - Aplikacja do Mapowania Drzew
 
-Welcome to EcoSpotter! This application allows users to discover, map, and learn about important trees in their area. It features an AI assistant to provide ecological advice and help with identifying trees.
+**EcoSpotter** to nowoczesna aplikacja webowa, która pozwala użytkownikom odkrywać, mapować i uczyć się o ważnych drzewach w ich okolicy. Aplikacja wykorzystuje sztuczną inteligencję do udzielania porad ekologicznych i pomocy w identyfikacji drzew.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and configured for Firebase Studio.
+## 🚀 Funkcje Aplikacji
 
-## Getting Started
+- **🗺️ Interaktywna Mapa** - Oznaczaj i przeglądaj lokalizacje drzew
+- **🤖 Asystent AI** - Otrzymuj porady ekologiczne i pomoc w identyfikacji gatunków
+- **📱 Responsywny Design** - Działa na wszystkich urządzeniach
+- **🔥 Firebase Backend** - Bezpieczna autoryzacja i baza danych
+- **🌍 Geolokalizacja** - Automatyczne wykrywanie Twojej lokalizacji
+- **📊 System Punktów** - Zdobywaj punkty za zgłaszanie drzew
 
-Follow these instructions to get the project set up and running on your local machine.
+## 🛠️ Technologie
 
-### Prerequisites
+- **Frontend:** Next.js 15, React 18, TypeScript
+- **Styling:** Tailwind CSS, Radix UI
+- **Backend:** Firebase (Auth, Firestore, Storage)
+- **Maps:** Google Maps API z @vis.gl/react-google-maps
+- **AI:** Google Gemini AI przez Genkit
+- **Deployment:** Firebase Hosting
 
-- Node.js (v18 or later recommended)
-- A Google account to create a Firebase project
-- `pnpm` package manager (or `npm`/`yarn`)
+## 📋 Wymagania
 
-### 1. Firebase Project Setup
+- **Node.js** (wersja 18 lub nowsza)
+- **Konto Google** do utworzenia projektu Firebase
+- **Package manager:** `npm`, `yarn` lub `pnpm`
 
-You'll need a Firebase project to handle the backend, including authentication, database, and storage.
+## ⚡ Szybki Start
 
-1.  **Create a Firebase Project:**
-    - Go to the [Firebase Console](https://console.firebase.google.com/).
-    - Click "Add project" and follow the on-screen instructions to create a new project.
-
-2.  **Create a Web App:**
-    - In your new project's dashboard, click the Web icon (`</>`) to add a new web app.
-    - Give your app a nickname (e.g., "EcoSpotter Web").
-    - You don't need to set up Firebase Hosting at this stage.
-    - After creating the app, Firebase will show you your configuration credentials. You will need these for your environment file.
-
-3.  **Enable Firebase Services:**
-    - In the Firebase Console, navigate to the "Build" section in the left-hand menu.
-    - **Authentication:**
-        - Go to **Authentication** > **Sign-in method**.
-        - Enable the **Email/Password** provider.
-    - **Firestore Database:**
-        - Go to **Firestore Database** > **Create database**.
-        - Start in **test mode**. This allows open read/write access for development. *For production, you must set up proper security rules.*
-        - Choose a location for your database.
-    - **Storage:**
-        - Go to **Storage** > **Get started**.
-        - Start in **test mode**. This allows open read/write access. *For production, you must set up proper security rules.*
-        - Choose a location for your storage bucket.
-
-### 2. Google Maps API Setup
-
-The application uses Google Maps to display tree locations.
-
-1.  **Get an API Key:**
-    - Go to the [Google Cloud Console](https://console.cloud.google.com/).
-    - Create a new project or select an existing one.
-    - In the navigation menu, go to **APIs & Services** > **Credentials**.
-    - Click **+ CREATE CREDENTIALS** and select **API key**.
-    - Copy your new API key. You'll need it for the environment file.
-
-2.  **Enable Required APIs:**
-    - In the navigation menu, go to **APIs & Services** > **Library**.
-    - Search for and enable the following APIs:
-        - **Maps JavaScript API**
-        - **Places API**
-        - **Geocoding API**
-
-3.  **Secure Your API Key (Recommended):**
-    - Go back to **APIs & Services** > **Credentials**.
-    - Click on your API key to edit it.
-    - Under **Application restrictions**, select **HTTP referrers (web sites)**.
-    - Add your development URL (e.g., `localhost:9002/*`) and your future production URL. This prevents others from using your key on their websites.
-
-### 3. Environment Variables
-
-Create a file named `.env.local` in the root of the project. Copy the contents of `.env.local.example` and fill in the values from the previous steps.
+### 1. Sklonuj Repozytorium
 
 ```bash
-# .env.local
-
-# Firebase Config
-NEXT_PUBLIC_FIREBASE_API_KEY="YOUR_FIREBASE_API_KEY"
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="YOUR_PROJECT_ID.firebaseapp.com"
-NEXT_PUBLIC_FIREBASE_PROJECT_ID="YOUR_PROJECT_ID"
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="YOUR_PROJECT_ID.appspot.com"
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="YOUR_SENDER_ID"
-NEXT_PUBLIC_FIREBASE_APP_ID="YOUR_APP_ID"
-
-# Google Maps API Key
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="YOUR_GOOGLE_MAPS_API_KEY"
+git clone <URL_REPOZYTORIUM>
+cd EcoSpotter
 ```
 
-### 4. Install Dependencies and Run
-
-Now you can install the project dependencies and run the development server.
+### 2. Zainstaluj Zależności
 
 ```bash
-# Install dependencies
+npm install
+# lub
+yarn install
+# lub
 pnpm install
-
-# Run the development server
-pnpm dev
 ```
 
-The app should now be running at [http://localhost:9002](http://localhost:9002).
+### 3. Skonfiguruj Firebase
+
+1. **Utwórz Projekt Firebase:**
+   - Przejdź do [Firebase Console](https://console.firebase.google.com/)
+   - Kliknij "Add project" i postępuj zgodnie z instrukcjami
+
+2. **Włącz Usługi:**
+   - **Authentication** → Email/Password provider
+   - **Firestore Database** → Utwórz bazę w trybie testowym
+   - **Storage** → Utwórz bucket w trybie testowym
+
+3. **Pobierz Konfigurację:**
+   - W projekcie kliknij ikonę Web (`</>`)
+   - Skopiuj dane konfiguracyjne
+
+### 4. Skonfiguruj Google Maps API
+
+1. **Pobierz Klucz API:**
+   - Przejdź do [Google Cloud Console](https://console.cloud.google.com/)
+   - Utwórz projekt i włącz Maps JavaScript API
+   - Wygeneruj klucz API
+
+2. **Zabezpiecz Klucz:**
+   - Ogranicz do `localhost:9002/*` (development)
+   - Dodaj swój domenę produkcyjną
+
+### 5. Utwórz Plik Environment
+
+Stwórz plik `.env.local` w głównym katalogu:
+
+```bash
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY="twój_firebase_api_key"
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="twój_projekt.firebaseapp.com"
+NEXT_PUBLIC_FIREBASE_PROJECT_ID="twój_projekt_id"
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="twój_projekt.appspot.com"
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="twój_sender_id"
+NEXT_PUBLIC_FIREBASE_APP_ID="twój_app_id"
+
+# Google Maps API
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="twój_google_maps_api_key"
+
+# Gemini AI (opcjonalnie)
+GEMINI_API_KEY="twój_gemini_api_key"
+```
+
+### 6. Uruchom Aplikację
+
+```bash
+# Serwer deweloperski
+npm run dev
+
+# Aplikacja będzie dostępna na: http://localhost:9002
+```
+
+## 🏗️ Struktura Projektu
+
+```
+EcoSpotter/
+├── src/
+│   ├── app/                 # Next.js App Router
+│   ├── components/          # Komponenty React
+│   │   ├── auth/           # Autoryzacja
+│   │   ├── map/            # Mapa i lokalizacja
+│   │   ├── forms/          # Formularze
+│   │   └── ui/             # Komponenty UI
+│   ├── lib/                # Utilities i konfiguracja
+│   ├── ai/                 # Integracja AI
+│   └── types/              # Definicje TypeScript
+├── public/                  # Statyczne pliki
+└── docs/                    # Dokumentacja
+```
+
+## 🔧 Dostępne Skrypty
+
+```bash
+npm run dev          # Serwer deweloperski
+npm run build        # Build produkcyjny
+npm run start        # Serwer produkcyjny
+npm run lint         # Sprawdź kod
+npm run typecheck    # Sprawdź typy TypeScript
+```
+
+## 🌐 Deployment
+
+### Firebase Hosting
+
+```bash
+# Zainstaluj Firebase CLI
+npm install -g firebase-tools
+
+# Zaloguj się
+firebase login
+
+# Zbuduj aplikację
+npm run build
+
+# Wdróż
+firebase deploy
+```
+
+## 🤝 Współpraca
+
+1. Fork repozytorium
+2. Utwórz branch dla nowej funkcji (`git checkout -b feature/AmazingFeature`)
+3. Commit zmiany (`git commit -m 'Add some AmazingFeature'`)
+4. Push do branch (`git push origin feature/AmazingFeature`)
+5. Otwórz Pull Request
+
+## 📝 Licencja
+
+Ten projekt jest licencjonowany pod licencją MIT - zobacz plik [LICENSE](LICENSE) dla szczegółów.
+
+## 🆘 Wsparcie
+
+Jeśli masz pytania lub problemy:
+- Otwórz [Issue](https://github.com/twoja-nazwa/EcoSpotter/issues)
+- Sprawdź [dokumentację Firebase](https://firebase.google.com/docs)
+- Przeczytaj [dokumentację Next.js](https://nextjs.org/docs)
+
+## 🙏 Podziękowania
+
+- [Next.js](https://nextjs.org/) - Framework React
+- [Firebase](https://firebase.google.com/) - Backend i hosting
+- [Google Maps](https://developers.google.com/maps) - Mapy i geolokalizacja
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Radix UI](https://www.radix-ui.com/) - Komponenty UI
+
+---
+
+**🌱 Sadź drzewa, mapuj świat, chroń przyrodę!** 🌱
